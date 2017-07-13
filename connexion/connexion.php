@@ -1,7 +1,7 @@
    <?php
 
 	$hote='localhost'; // le chemin vers le serveur
-	$bdd='BDD_cv'; // le nom de la base de données
+	$bdd='site_cv'; // le nom de la base de données
 	$utilisateur='root'; // le nom d'utilisateur pour se connecter
 	$passe=''; // mot de passe de l'utilisateur local PC
 	//$passe='root'; // mot de passe local MAC
