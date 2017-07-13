@@ -29,26 +29,26 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	?>
 <?php
 	//gestion des contenus
-	//insertion d'une expérience
-		if(isset($_POST['titre_e'])){//si on récupère une nelle expérience
-			if($_POST['titre_e']!='' && $_POST['description_e']!='' && $_POST['dates_e']!=''){// si expérience et les autres champs ne sont pas vide
-				$titre_e = addslashes($_POST['titre_e']);
-				$sous_titre_e = addslashes($_POST['sous_titre_e']);
-            	$dates_e = addslashes($_POST['dates_e']);
-            	$description_e = addslashes($_POST['description_e']);
+	//insertion d'une formation
+		if(isset($_POST['titre_f'])){//si on récupère une nouvelle formation
+			if($_POST['titre_f']!='' && $_POST['dates_f']!=''){// si la formation et les autres champs ne sont pas vide
+				$titre_f = addslashes($_POST['titre_f']);
+				$sous_titre_f = addslashes($_POST['sous_titre_f']);
+            	$dates_e = addslashes($_POST['dates_f']);
+            	$description_e = addslashes($_POST['description_f']);
 
-				$pdoCV->exec(" INSERT INTO experiences VALUES (NULL, '$titre_e', '$sous_titre_e',  '$dates_e', '$description_e', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
-				header("location: ../admin/experiences.php");
+				$pdoCV->exec(" INSERT INTO formation VALUES (NULL, '$titre_f', '$sous_titre_f',  '$dates_f', '$description_f', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
+				header("location: ../admin/formations.php");
 				exit();
 			}//ferme le if
 		}//ferme le if isset
 
 	//suppression d'une expérience
-		if(isset($_GET['id_experience'])){
-			$efface = $_GET['id_experience'];
-			$sql = " DELETE FROM t_experiences WHERE id_experience = '$efface' ";
+		if(isset($_GET['id_formation'])){
+			$efface = $_GET['id_formation'];
+			$sql = " DELETE FROM formations WHERE id_formation = '$efface' ";
 			$pdoCV -> query($sql);// ou on peut avec exec
-			header("location: ../admin/experiences.php");
+			header("location: ../admin/formations.php");
 		}
 
 	?>
@@ -62,7 +62,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 		$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
 		$ligne_utilisateur = $sql->fetch();
 	?>
-<title>Admin : modification d'une expérience <?php echo $ligne_utilisateur['pseudo']; ?></title>
+<title>Admin : modification d'une formation <?php echo $ligne_utilisateur['pseudo']; ?></title>
 <!--CKEditor-->
 <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
 <!-- Bootstrap -->
@@ -91,13 +91,13 @@ $ligne_titre = $sql->fetch();
 <section>
   <div class="row">
    <?php
-		$sql = $pdoCV->prepare("SELECT * FROM experiences WHERE utilisateur_id = '$id_utilisateur' ORDER BY id_experience DESC "); // prépare la requête
+		$sql = $pdoCV->prepare("SELECT * FROM formations WHERE utilisateur_id = '$id_utilisateur' ORDER BY id_formation DESC "); // prépare la requête
 		$sql->execute(); // exécute-la
-		$nbr_experiences = $sql->rowCount(); //compte les lignes
+		$nbr_formations = $sql->rowCount(); //compte les lignes
 	 ?>
     <div class="col-lg-12 page-header text-center">
-      <h2>Expériences</h2>
-      <p>Il y a <?php echo $nbr_experiences; ?> expériences dans la table pour <?php echo $ligne_utilisateur['pseudo']; ?></p>
+      <h2>FORMATION</h2>
+      <p>Il y a <?php echo $nbr_formations; ?> formation dans la table pour <?php echo $ligne_utilisateur['pseudo']; ?></p>
     </div>
   </div>
   <div class="container">
@@ -117,13 +117,13 @@ $ligne_titre = $sql->fetch();
 			<th scope="col">supprimer</th>
 		</tr>
 		<tr>
-			<?php while ($ligne_experience = $sql->fetch()) { ?>
-			<td><?php echo $ligne_experience['titre_e']; ?></td>
-			<td><?php echo $ligne_experience['sous_titre_e']; ?></td>
-			<td><?php echo $ligne_experience['description_e']; ?></td>
-			<td><?php echo $ligne_experience['dates_e']; ?></td>
-			<td><a href="modif_experience.php?id_experience=<?php echo $ligne_experience['id_experience']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-			<td><a class="supprimer" href="experiences.php?id_experience=<?php echo $ligne_experience['id_experience']; ?>"><span class="glyphicon glyphicon-trash"></span></a></span></td>
+			<?php while ($ligne_formation = $sql->fetch()) { ?>
+			<td><?php echo $ligne_formation['titre_f']; ?></td>
+			<td><?php echo $ligne_formation['sous_titre_f']; ?></td>
+			<td><?php echo $ligne_formation['description_f']; ?></td>
+			<td><?php echo $ligne_formation['dates_f']; ?></td>
+			<td><a href="modif_experience.php?id_formation=<?php echo $ligne_formation['id_formation']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+			<td><a class="supprimer" href="formations.php?id_formation=<?php echo $ligne_formation['id_formation']; ?>"><span class="glyphicon glyphicon-trash"></span></a></span></td>
 		</tr>
 			<?php } ?>
 		</tbody>
@@ -136,18 +136,18 @@ $ligne_titre = $sql->fetch();
           <div class="text-center col-xs-9">
            <div class="jumbotron">
             <!-- form insertion d'une expérience -->
-            <form action="experiences.php" method="post" class="text-center">
+            <form action="formations.php" method="post" class="text-center">
               <div class="form-group">
-                <label for="titre_e">Titre de l'expérience</label>
-                <input type="text" name="titre_e" class="form-control" id="titre_e" placeholder="insérez une expérience">
-                <label for="sous_titre_e">Sous-titre</label>
-                <input type="text" name="sous_titre_e" class="form-control" id="sous_titre_e" placeholder="le sous-titre est facultatif">
-                <label for="dates_e">Dates</label>
-                <input type="text" name="dates_e" class="form-control" id="dates_e" placeholder="dates de début et de fin">
+                <label for="formation_f">Titre de la formation</label>
+                <input type="text" name="titre_f" class="form-control" id="titre_e" placeholder="insérez une formation">
+                <label for="sous_titre_f">Sous-titre</label>
+                <input type="text" name="sous_titre_f" class="form-control" id="sous_titre_f" placeholder="le sous-titre est facultatif">
+                <label for="dates_f">Dates</label>
+                <input type="text" name="dates_f" class="form-control" id="dates_f" placeholder="dates de début et de fin">
                 <label for="description_e">Description</label>
-                <textarea name="description_e" cols="80" rows="4" class="form-control" id="description_e" placeholder="description de l'expérience"></textarea>
+                <textarea name="description_e" cols="80" rows="4" class="form-control" id="description_e" placeholder="description de la formation"></textarea>
                 <script>
-            		CKEDITOR.replace( 'description_e' );
+            		CKEDITOR.replace( 'description_f' );
         		</script>
               </div>
               <input type="submit" value="Envoyez" class="btn btn-primary btn-lg" style="margin-top: 10px;">
