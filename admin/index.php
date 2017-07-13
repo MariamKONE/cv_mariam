@@ -3,17 +3,17 @@
 session_start();// à mettre dans toutes les pages de l'admin ; SESSION et authentification
 	if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
 		$id_utilisateur=$_SESSION['id_utilisateur'];
-		$prenom=$_SESSION['prenom'];	
+		$prenom=$_SESSION['prenom'];
 		$nom=$_SESSION['nom'];
-		
+
 		//echo $_SESSION['connexion'];
-		
+
 	}else{//l'utilisateur n'est pas connecté
 		header('location:authentification.php');
 	}
 //pour se déconnecter
 if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
-	
+
 	$_SESSION['connexion']='';// on vide les variables de session
 	$_SESSION['id_utilisateur']='';
 	$_SESSION['prenom']='';
@@ -30,7 +30,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php
-		$sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
+		$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
 		$ligne_utilisateur = $sql->fetch();
 	?>
 <title>Admin : <?php echo $ligne_utilisateur['pseudo']; ?></title>
@@ -47,8 +47,8 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 <?php include("include_nav.php"); ?>
 <!-- HEADER -->
 <header>
- <?php 
-	$sql = $pdoCV->query(" SELECT * FROM t_titres_cv WHERE utilisateur_id ='$id_utilisateur' ");
+ <?php
+	$sql = $pdoCV->query(" SELECT * FROM titres_cv WHERE utilisateur_id ='$id_utilisateur' ");
 $ligne_titre = $sql->fetch();
 	?>
   <div class="jumbotron">
@@ -64,7 +64,7 @@ $ligne_titre = $sql->fetch();
     </div>
   </div>
 </header>
-<!-- / HEADER --> 
+<!-- / HEADER -->
 <!--  SECTION-1 -->
 <section>
   <div class="row">
@@ -126,7 +126,7 @@ $ligne_titre = $sql->fetch();
           <small>Someone famous in <cite title="Source Title">Source Title</cite></small> </blockquote>
       </div>
     </div>
-    
+
   </div>
   <div class="jumbotron">
     <div class="container">
@@ -134,15 +134,15 @@ $ligne_titre = $sql->fetch();
         <div class="col-xs-12 col-md-9 col-lg-9">
           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, praesentium, autem, veritatis error quidem eos fuga atque asperiores magnam deleniti necessitatibus sequi quo</p>
         </div>
-        <div class=" text-center col-sm-6 col-lg-3 col-sm-offset-3 col-md-3 col-xs-offset-4 col-xs-5 col-lg-offset-0"> 
-        	<a class="btn  btn-block btn-lg btn-success" href="#" title="">Sign up now!</a> 
+        <div class=" text-center col-sm-6 col-lg-3 col-sm-offset-3 col-md-3 col-xs-offset-4 col-xs-5 col-lg-offset-0">
+        	<a class="btn  btn-block btn-lg btn-success" href="#" title="">Sign up now!</a>
         </div>
       </div>
     </div>
   </div>
-  
+
   <!-- /container -->
-  
+
   <div class="container">
     <div class="row">
       <div class="col-lg-12 page-header text-center">
@@ -182,16 +182,16 @@ $ligne_titre = $sql->fetch();
       </div>
     </div>
   </div>
-  <!-- / CONTAINER--> 
+  <!-- / CONTAINER-->
 </section>
 <div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>
 
 <!-- FOOTER -->
 	<?php include("include_footer.php"); ?>
-<!-- / FOOTER --> 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="../js/jquery-1.11.3.min.js"></script> 
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<!-- / FOOTER -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.js"></script>
 </body>
 </html>

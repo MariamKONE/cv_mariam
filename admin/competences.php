@@ -1,33 +1,33 @@
 <?php require '../connexion/connexion.php' ?>
 <?php
-	
+
 session_start();// à mettre dans toutes les pages de l'admin ; SESSION et authentification
 	if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){
 		$id_utilisateur=$_SESSION['id_utilisateur'];
-		$prenom=$_SESSION['prenom'];	
+		$prenom=$_SESSION['prenom'];
 		$nom=$_SESSION['nom'];
-		
+
 		//echo $_SESSION['connexion'];
-		
+
 	}else{//l'utilisateur n'est pas connecté
 		header('location:authentification.php');
 	}
 //pour se déconnecter
 if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
-	
+
 	$_SESSION['connexion']='';// on vide les variables de session
 	$_SESSION['id_utilisateur']='';
 	$_SESSION['prenom']='';
 	$_SESSION['nom']='';
-	
+
 	unset($_SESSION['connexion']);
 	session_destroy();
-	
+
 	header('location:../index.php');
 }
 
 	?>
-	<?php 
+	<?php
 	//gestion des contenus
 	//insertion d'une compétence
 		if(isset($_POST['competence'])){//si on récupère une nelle compétence
@@ -38,7 +38,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 				exit();
 			}//ferme le if
 		}//ferme le if isset
-	
+
 	//suppression d'une compétence
 		if(isset($_GET['id_competence'])){
 			$efface = $_GET['id_competence'];
@@ -55,7 +55,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php
-		$sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
+		$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
 		$ligne_utilisateur = $sql->fetch();
 	?>
 <title>Admin : modification d'une compétence <?php echo $ligne_utilisateur['pseudo']; ?></title>
@@ -74,18 +74,18 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 <?php include("include_nav.php"); ?>
 <!-- HEADER -->
 <header>
- <?php 
-	$sql = $pdoCV->query(" SELECT * FROM t_titres_cv WHERE utilisateur_id ='$id_utilisateur' ");
+ <?php
+	$sql = $pdoCV->query(" SELECT * FROM titres_cv WHERE utilisateur_id ='$id_utilisateur' ");
 $ligne_titre = $sql->fetch();
 	?>
 </header>
-<!-- / HEADER --> 
+<!-- / HEADER -->
 
 <!--  SECTION-1 -->
 <section>
   <div class="row">
    <?php
-		$sql = $pdoCV->prepare("SELECT * FROM t_competences WHERE utilisateur_id = '$id_utilisateur' "); // prépare la requête
+		$sql = $pdoCV->prepare("SELECT * FROM competences WHERE utilisateur_id = '$id_utilisateur' "); // prépare la requête
 		$sql->execute(); // exécute-la
 		$nbr_competences = $sql->rowCount(); //compte les lignes
 	 ?>
@@ -119,12 +119,12 @@ $ligne_titre = $sql->fetch();
 		</tbody>
 	</table>
       </div>
-    </div>   
+    </div>
         <div class="row text-center">
-          <div class="col-xs-3">- - 
+          <div class="col-xs-3">- -
           </div>
           <div class="text-center col-xs-9">
-           <div class="jumbotron"> 
+           <div class="jumbotron">
             <!-- form insertion d'une compétence -->
             <form action="competences.php" method="post" class="text-center">
               <div class="form-group">
@@ -133,22 +133,22 @@ $ligne_titre = $sql->fetch();
               </div>
               <input type="submit" value="Envoyez" class="btn btn-primary btn-lg" style="margin-top: 10px;">
             </form>
-            <!-- fin formulaire insertion des compétences --> 
+            <!-- fin formulaire insertion des compétences -->
           </div>
         </div>
       </div>
   <div class="container">
   à voir
 </div>
-  <!-- / CONTAINER--> 
+  <!-- / CONTAINER-->
 </section>
 <div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>
 <!-- FOOTER -->
 	<?php include("include_footer.php"); ?>
-<!-- / FOOTER --> 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="../js/jquery-1.11.3.min.js"></script> 
-<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<!-- / FOOTER -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.js"></script>
 <script src="../js/pisola_js.js"></script>
 </body>

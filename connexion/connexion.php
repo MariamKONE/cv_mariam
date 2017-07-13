@@ -1,6 +1,6 @@
    <?php
 
-	$hote='localhost'; // le chemin vers le serveur
+	$hote='localhost'; // le chemin vers le serveur en local
 	$bdd='site_cv'; // le nom de la base de données
 	$utilisateur='root'; // le nom d'utilisateur pour se connecter
 	$passe=''; // mot de passe de l'utilisateur local PC
