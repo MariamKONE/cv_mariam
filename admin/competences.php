@@ -42,7 +42,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	//suppression d'une compétence
 		if(isset($_GET['id_competence'])){
 			$efface = $_GET['id_competence'];
-			$sql = " DELETE FROM t_competences WHERE id_competence = '$efface' ";
+			$sql = " DELETE FROM competences WHERE id_competence = '$efface' ";
 			$pdoCV -> query($sql);// ou on peut avec exec
 			header("location: ../admin/competences.php");
 		}

@@ -46,7 +46,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	//suppression d'une expérience
 		if(isset($_GET['id_experience'])){
 			$efface = $_GET['id_experience'];
-			$sql = " DELETE FROM t_experiences WHERE id_experience = '$efface' ";
+			$sql = " DELETE FROM experiences WHERE id_experience = '$efface' ";
 			$pdoCV -> query($sql);// ou on peut avec exec
 			header("location: ../admin/experiences.php");
 		}
