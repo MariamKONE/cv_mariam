@@ -33,7 +33,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 		if(isset($_POST['competence'])){//si on récupère une nelle compétence
 			if($_POST['competence']!=''){// si compétence n'est pas vide
 				$competence = addslashes($_POST['competence']);
-				$pdoCV->exec(" INSERT INTO t_competences VALUES (NULL, '$competence', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
+				$pdoCV->exec(" INSERT INTO competences VALUES (NULL, '$competence', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
 				header("location: ../admin/competences.php");
 				exit();
 			}//ferme le if
