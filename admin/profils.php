@@ -30,24 +30,27 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	<?php
 //gestion des contenus
 //insertion d'un profil
-if(isset($_POST['profil'])){//si on récupère une nelle compétence
-    if($_POST['profil']!=''){// si compétence n'est pas vide
-        $competence = addslashes($_POST['profil']);
-        $pdoCV->exec(" INSERT INTO profils VALUES (NULL, '$profil', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
-        header("location: ../admin/profils.php");
-        exit();
-    }//ferme le if
+if(isset($_POST['titre_p'])){//si on récupère un nouveau profil
+	if($_POST['titre_p']!='' && $_POST['description_p']!=''){// si un profil ou les autres champs pas vides
+		$titre_p = addslashes($_POST['titre_p']);
+		$description_p = addslashes($_POST['description_p']);
+
+		$pdoCV->exec(" INSERT INTO profils VALUES (NULL, '$titre_p', '$description_p', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
+		header("location: ../admin/profils.php");
+		exit();
+	}//ferme le if
 }//ferme le if isset
 
-//suppression d'une compétence
-    if(isset($_GET['id_profil'])){
-        $efface = $_GET['id_profil'];
-        $sql = " DELETE FROM profils WHERE id_profil = '$efface' ";
-        $pdoCV -> query($sql);// ou on peut avec exec
-        header("location: ../admin/profils.php");
-    }
+//suppression d'une expérience
+	if(isset($_GET['id_profil'])){
+		$efface = $_GET['id_profil'];
+		$sql = " DELETE FROM profils WHERE id_profil = '$efface' ";
+		$pdoCV -> query($sql);// ou on peut avec exec
+		header("location: ../admin/profils.php");
+	}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -58,8 +61,9 @@ if(isset($_POST['profil'])){//si on récupère une nelle compétence
 		$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
 		$ligne_utilisateur = $sql->fetch();
 	?>
-<title>Admin : modification d'un profil <?php echo $ligne_utilisateur['pseudo']; ?></title>
-
+<title>Admin : modification d'un profil  <?php echo $ligne_utilisateur['pseudo']; ?></title>
+<!--CKEditor-->
+<script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
 <!-- Bootstrap -->
 <link rel="stylesheet" href="../css/bootstrap.css">
 
@@ -72,25 +76,91 @@ if(isset($_POST['profil'])){//si on récupère une nelle compétence
 </head>
 <body>
 <?php include("include_nav.php"); ?>
-<!-- / HEADER -->
+
+<!-- HEADER -->
 <header>
  <?php
 	$sql = $pdoCV->query(" SELECT * FROM titres_cv WHERE utilisateur_id ='$id_utilisateur' ");
 $ligne_titre = $sql->fetch();
 	?>
 </header>
-<!-- / HEADER -->
 
 <!--  SECTION-1 -->
 <section>
   <div class="row">
    <?php
-		$sql = $pdoCV->prepare("SELECT * FROM profils WHERE utilisateur_id = '$id_utilisateur' "); // prépare la requête
+		$sql = $pdoCV->prepare("SELECT * FROM profils WHERE utilisateur_id = '$id_utilisateur' ORDER BY id_profil DESC "); // prépare la requête
 		$sql->execute(); // exécute-la
 		$nbr_profils = $sql->rowCount(); //compte les lignes
 	 ?>
-     <div class="col-lg-12 page-header text-center">
-       <h2>PROFIL</h2>
-       <p>Il y a <?php echo $nbr_profils; ?> profils dans la table pour <?php echo $ligne_utilisateur['pseudo']; ?></p>
+    <div class="col-lg-12 page-header text-center">
+      <h2>Profils</h2>
+      <p>Il y a <?php echo $nbr_profils; ?> profils dans la table pour <?php echo $ligne_utilisateur['pseudo']; ?></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row text-center">
+     <div class="col-xs-3 jumbotron">
+          	<span class="glyphicon glyphicon-road"></span>
      </div>
-   </div>
+      <div class="col-xs-9 text-center">
+	<table class="table table-striped">
+		<tbody>
+		<tr class="info">
+			<th scope="col">Titre</th>
+		  	<th scope="col">description</th>
+			<th scope="col">modifier</th>
+			<th scope="col">supprimer</th>
+		</tr>
+		<tr>
+			<?php while ($ligne_profil = $sql->fetch()) { ?>
+			<td><?php echo $ligne_profil['titre_p']; ?></td>
+			<td><?php echo $ligne_profil['description_p']; ?></td>
+			<td><a href="modif_profil.php?id_profil=<?php echo $ligne_profil['id_profil']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+			<td><a class="supprimer" href="profils.php?id_profil=<?php echo $ligne_profil['id_profil']; ?>"><span class="glyphicon glyphicon-trash"></span></a></span></td>
+		</tr>
+			<?php } ?>
+		</tbody>
+	</table>
+      </div>
+    </div>
+        <div class="row text-center">
+          <div class="col-xs-3">- -
+          </div>
+          <div class="text-center col-xs-9">
+           <div class="jumbotron">
+            <!-- form insertion d'un profil -->
+            <form action="profils.php" method="post" class="text-center">
+              <div class="form-group">
+                <label for="titre_p">Titre du profil</label>
+                <input type="text" name="titre_p" class="form-control" id="titre_p" placeholder="insérez un profil">
+				
+                <label for="description_p">Description</label>
+                <textarea name="description_p" cols="80" rows="4" class="form-control" id="description_p" placeholder="description du profil"></textarea>
+                <script>
+            		CKEDITOR.replace( 'description_p' );
+        		</script>
+              </div>
+              <input type="submit" value="Envoyez" class="btn btn-primary btn-lg" style="margin-top: 10px;">
+            </form>
+            <!-- fin formulaire insertion des expériences -->
+          </div>
+        </div>
+      </div>
+  <div class="container">
+  à voir
+</div>
+  <!-- / CONTAINER-->
+</section>
+<div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>
+
+<!-- FOOTER -->
+	<?php include("include_footer.php"); ?>
+<!-- / FOOTER -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.js"></script>
+<script src="../js/pisola_js.js"></script>
+</body>
+</html>

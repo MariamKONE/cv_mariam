@@ -137,9 +137,7 @@ $ligne_titre = $sql->fetch();
           </div>
         </div>
       </div>
-  <div class="container">
-  à voir
-</div>
+  
   <!-- / CONTAINER-->
 </section>
 <div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>

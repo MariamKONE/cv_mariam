@@ -85,7 +85,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 $ligne_titre = $sql->fetch();
 	?>
 </header>
-<!-- / HEADER -->
+
 
 <!--  SECTION-1 -->
 <section>
@@ -156,9 +156,7 @@ $ligne_titre = $sql->fetch();
           </div>
         </div>
       </div>
-  <div class="container">
-  à voir
-</div>
+
   <!-- / CONTAINER-->
 </section>
 <div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>
