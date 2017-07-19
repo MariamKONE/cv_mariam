@@ -116,8 +116,8 @@ $ligne_titre = $sql->fetch();
 			<?php while ($ligne_profil = $sql->fetch()) { ?>
 			<td><?php echo $ligne_profil['titre_p']; ?></td>
 			<td><?php echo $ligne_profil['description_p']; ?></td>
-			<td><a href="modif_profil.php?id_profil=<?php echo $ligne_profil['id_profil']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-			<td><a class="supprimer" href="profils.php?id_profil=<?php echo $ligne_profil['id_profil']; ?>"><span class="glyphicon glyphicon-trash"></span></a></span></td>
+			<td><a href="modif_profil.php?id_profil=<?php echo $ligne_profil['id_profil']; ?>"><span scope="col" class="glyphicon glyphicon-pencil"></span></a></td>
+			<td><a class="supprimer" href="profils.php?id_profil=<?php echo $ligne_profil['id_profil']; ?>"><span scope="col" class="glyphicon glyphicon-trash"></span></a></span></td>
 		</tr>
 			<?php } ?>
 		</tbody>
@@ -134,7 +134,7 @@ $ligne_titre = $sql->fetch();
               <div class="form-group">
                 <label for="titre_p">Titre du profil</label>
                 <input type="text" name="titre_p" class="form-control" id="titre_p" placeholder="insérez un profil">
-				
+
                 <label for="description_p">Description</label>
                 <textarea name="description_p" cols="80" rows="4" class="form-control" id="description_p" placeholder="description du profil"></textarea>
                 <script>
@@ -147,9 +147,7 @@ $ligne_titre = $sql->fetch();
           </div>
         </div>
       </div>
-  <div class="container">
-  à voir
-</div>
+
   <!-- / CONTAINER-->
 </section>
 <div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>

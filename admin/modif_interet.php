@@ -29,19 +29,21 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	?>
 	<?php
 	//gestion des contenus, mise à jour d'une compétence
-	if(isset($_POST['titre_p'])){// par le nom du premier input
+	if(isset($_POST['titre_i'])){// par le nom du premier input
 
-		$titre_e = addslashes($_POST['titre_p']);
-		$description_p = addslashes($_POST['description_p']);
-		$id_profil = $_POST['id_profil'];
-		$pdoCV->exec(" UPDATE profils SET titre_p='$titre_p', description_p='$description_p' WHERE id_profil='$id_profil' ");
-			 header('location: ../admin/profils.php'); //le header pour revenir à la liste des compétences de l'utilisateur
+		$titre_i = addslashes($_POST['titre_i']);
+		$dates_i = addslashes($_POST['dates_i']);
+		$sous_titre_i = addslashes($_POST['sous_titre_i']);
+		$description_i = addslashes($_POST['description_i']);
+		$id_interet = $_POST['id_interet'];
+		$pdoCV->exec(" UPDATE interets SET titre_i='$titre_i', sous_titre_i='$sous_titre_i', dates_i='$dates_i', description_i='$description_i' WHERE id_interet='$id_interet' ");
+			 header('location: ../admin/interets.php'); //le header pour revenir à la liste des compétences de l'utilisateur
         exit();
 	}
-	//je récupère la compétence
-	$id_profil = $_GET['id_profil']; // par l'id et $_GET
-	$sql = $pdoCV->query("SELECT * FROM profils WHERE id_profil = '$id_profil' ");// la requête égale à l'id
-	$ligne_profil = $sql->fetch();
+	//je récupère l'interet
+	$id_interet = $_GET['id_interet']; // par l'id et $_GET
+	$sql = $pdoCV->query("SELECT * FROM interets WHERE id_interet = '$id_interet' ");// la requête égale à l'id
+	$ligne_interet = $sql->fetch();
 
 ?>
 <!DOCTYPE html>
@@ -54,12 +56,11 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 		$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
 		$ligne_utilisateur = $sql->fetch();
 	?>
-<title>Modification d'un profil : <?php echo $ligne_utilisateur['pseudo']; ?></title>
+<title>Modification d'un interet : <?php echo $ligne_utilisateur['pseudo']; ?></title>
 <!--CKEditor-->
 <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
 <!-- Bootstrap -->
 <link rel="stylesheet" href="../css/bootstrap.css">
-
 </head>
 <body>
 <?php include("include_nav.php"); ?>
@@ -71,14 +72,14 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 $ligne_titre = $sql->fetch();
 	?>
 </header>
-<!-- / HEADER -->
+
 
 <!--  SECTION-1 -->
 <section>
   <div class="row">
 
     <div class="col-lg-12 page-header text-center">
-      <h2>Mise à jour d'un profil</h2>
+      <h2>Mise à jour d'un interet</h2>
     </div>
   </div>
   <div class="container">
@@ -90,16 +91,20 @@ $ligne_titre = $sql->fetch();
           <div class="text-center col-xs-9">
            <div class="jumbotron">
             <!-- form modification d'une expérience -->
-            <form action="modif_profil.php" method="post" class="text-center">
+            <form action="modif_interet.php" method="post" class="text-center">
 		<div class="form-group">
-			<label for="titre_p">Titre du profil</label>
-			<input type="text" name="titre_p" class="form-control" value="<?php echo $ligne_profil['titre_p']; ?>">
-			<label for="description_p">Description</label>
-			<textarea name="description_p" class="form-control" cols="80" rows="10" maxlength="200" id="description_p"><?php echo $ligne_profil['description_p']; ?></textarea>
+			<label for="titre_i">Titre de l'interet</label>
+			<input type="text" name="titre_i" class="form-control" value="<?php echo $ligne_interet['titre_i']; ?>">
+			<label for="dates_i">Dates</label>
+			<input type="text" name="dates_i" class="form-control" value="<?php echo $ligne_interet['dates_i']; ?>">
+			<label for="sous_titres_i">Sous-titre</label>
+			<input type="text" name="sous_titre_i" class="form-control" value="<?php echo $ligne_interet['sous_titre_i']; ?>">
+			<label for="description_i">Description</label>
+			<textarea name="description_i" class="form-control" cols="80" rows="10" maxlength="200" id="description_i"><?php echo $ligne_interet['description_i']; ?></textarea>
 			 <script>
-            		CKEDITOR.replace( 'description_p' );
+            		CKEDITOR.replace( 'description_i' );
         	</script>
-			<input hidden name="id_profil" value="<?php echo $ligne_profil['id_profil']; ?>">
+			<input hidden name="id_interet" value="<?php echo $ligne_interet['id_interet']; ?>">
 		</div>
               <input type="submit" value="Mettre à jour" class="btn btn-primary btn-lg" style="margin-top: 10px;">
             </form>
@@ -107,15 +112,6 @@ $ligne_titre = $sql->fetch();
           </div>
         </div>
       </div>
-  <div class="container">
-  ... une div class container avec rien
-</div>
- <div class="row">
-     <hr>
-    </div>
-  <!-- / CONTAINER-->
-</section>
-<div class="well"> </div>
 
 <!-- FOOTER -->
 	<?php include("include_footer.php"); ?>

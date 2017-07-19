@@ -34,8 +34,8 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 			if($_POST['titre_f']!='' && $_POST['dates_f']!=''){// si la formation et les autres champs ne sont pas vide
 				$titre_f = addslashes($_POST['titre_f']);
 				$sous_titre_f = addslashes($_POST['sous_titre_f']);
-            	$dates_e = addslashes($_POST['dates_f']);
-            	$description_e = addslashes($_POST['description_f']);
+            	$dates_f = addslashes($_POST['dates_f']);
+            	$description_f = addslashes($_POST['description_f']);
 
 				$pdoCV->exec(" INSERT INTO formation VALUES (NULL, '$titre_f', '$sous_titre_f',  '$dates_f', '$description_f', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
 				header("location: ../admin/formations.php");
@@ -68,12 +68,6 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 <!-- Bootstrap -->
 <link rel="stylesheet" href="../css/bootstrap.css">
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <?php include("include_nav.php"); ?>
@@ -122,7 +116,7 @@ $ligne_titre = $sql->fetch();
 			<td><?php echo $ligne_formation['sous_titre_f']; ?></td>
 			<td><?php echo $ligne_formation['description_f']; ?></td>
 			<td><?php echo $ligne_formation['dates_f']; ?></td>
-			<td><a href="modif_experience.php?id_formation=<?php echo $ligne_formation['id_formation']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+			<td><a href="modif_formation.php?id_formation=<?php echo $ligne_formation['id_formation']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 			<td><a class="supprimer" href="formations.php?id_formation=<?php echo $ligne_formation['id_formation']; ?>"><span class="glyphicon glyphicon-trash"></span></a></span></td>
 		</tr>
 			<?php } ?>
