@@ -111,7 +111,7 @@ require_once("inc/init.inc.php");
                     </li>
 
                     <li>
-                        <a class="page-scroll" href="#contact">Telecharger CV</a>
+                        <a class="page-scroll" href="#telecharger">Telecharger CV</a>
                     </li>
                 </ul>
             </div>
@@ -129,8 +129,11 @@ require_once("inc/init.inc.php");
                     $ligne_titre = $sql->fetch();
                 ?><?php echo $ligne_titre['titre_cv']; ?></h1>
                 <hr>
-                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                <p><?php echo $ligne_titre['accroche']; ?></p>
+
+                    <a href="img/CV_mariam_kone_Dev.pdf" href="#telecharger" class="btn btn-primary btn-xl page-scroll" download>Téléchargez mon Cv </a>
+
+
             </div>
         </div>
     </header>
@@ -291,8 +294,9 @@ require_once("inc/init.inc.php");
     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
+                <h2>Télécharger</h2>
+                <a href="img/CV_mariam_kone_Dev.pdf" href="#telecharger" class="btn btn-default btn-xl sr-button" download>Téléchargez mon Cv </a>
+
             </div>
         </div>
     </aside>

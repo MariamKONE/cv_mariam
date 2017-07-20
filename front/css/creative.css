@@ -20,9 +20,9 @@ hr.light {
   border-color: white;
 }
 a {
-  -webkit-transition: all 0.35s;
-  -moz-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.40s;
+  -moz-transition: all 0.40s;
+  transition: all 0.40s;
   color: #F05F40;
 }
 a:hover,
