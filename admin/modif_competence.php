@@ -29,10 +29,11 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	?>
 	<?php
 	//gestion des contenus, mise à jour d'une compétence
-	if(isset($_POST['competence'])){// par le nom du premier input
-		$competence =  addslashes($_POST['competence']);
+	if(isset($_POST['titre_c'])){// par le nom du premier input
+		$titre_c =  addslashes($_POST['titre_c']);
+		$description_c = addslashes($_POST['description_c']);
 		$id_competence = $_POST['id_competence'];
-		$pdoCV->exec(" UPDATE t_competences SET competence='$competence' WHERE id_competence='$id_competence' ");
+		$pdoCV->exec(" UPDATE competences SET titre_c='$titre_c', description_c='$description_c',  WHERE id_competence='$id_competence' ");
 			 header('location: ../admin/competences.php'); //le header pour revenir à la liste des compétences de l'utilisateur
         exit();
 	}
@@ -96,7 +97,7 @@ $ligne_titre = $sql->fetch();
             <form action="modif_competence.php" method="post" class="text-center">
               <div class="form-group">
                 <label for="competence">Formulaire de mise à jour de la compétence</label>
-                <input type="text" name="competence" class="form-control" value="<?php echo $ligne_competence['competence']; ?>">
+                <input type="text" name="competence" class="form-control" value="<?php echo $ligne_competence['description_c']; ?>">
                 <input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">
               </div>
               <input type="submit" value="Mettre à jour" class="btn btn-primary btn-lg" style="margin-top: 10px;">

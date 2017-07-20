@@ -27,7 +27,7 @@
             <li><a href="interets.php">Centres d'Intérêts</a> </li>
             <li><a href="realisations.php">Réalisations</a> </li>
             <li role="separator" class="divider"> </li>
-            <li><a href="#">Voir</a> </li>
+            <li><a href="index.php">Voir</a> </li>
           </ul>
         </li>
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"> <span class="glyphicon glyphicon-user"></span> <?php echo $ligne_utilisateur['pseudo']; ?> <span class="caret"></span></a>

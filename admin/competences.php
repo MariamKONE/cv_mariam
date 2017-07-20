@@ -109,7 +109,7 @@ $ligne_titre = $sql->fetch();
 		</tr>
 		<tr>
 			<?php while ($ligne_competence = $sql->fetch()) { ?>
-			<td><?php echo $ligne_competence['competence']; ?></td>
+			<td><?php echo $ligne_competence['description_c']; ?></td>
 			<td><a href="modif_competence.php?id_competence=<?php echo $ligne_competence['id_competence']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 			<td>
 <a class="supr" href="competences.php?id_competence=<?php echo $ligne_competence['id_competence']; ?>">
@@ -137,7 +137,7 @@ $ligne_titre = $sql->fetch();
           </div>
         </div>
       </div>
-  
+
   <!-- / CONTAINER-->
 </section>
 <div class="well text-center"><span class="glyphicon glyphicon-leaf"></span></div>

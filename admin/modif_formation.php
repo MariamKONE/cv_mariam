@@ -31,11 +31,11 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 //gestion des contenus, mise à jour d'une compétence
 if(isset($_POST['titre_f'])){// par le nom du premier input
 
-    $titre_e = addslashes($_POST['titre_f']);
-    $dates_e = addslashes($_POST['dates_f']);
-    $sous_titre_e = addslashes($_POST['sous_titre_f']);
-    $description_e = addslashes($_POST['description_f']);
-    $id_experience = $_POST['id_formation'];
+    $titre_f = addslashes($_POST['titre_f']);
+    $dates_f = addslashes($_POST['dates_f']);
+    $sous_titre_f = addslashes($_POST['sous_titre_f']);
+    $description_f = addslashes($_POST['description_f']);
+    $id_formation = $_POST['id_formation'];
     $pdoCV->exec(" UPDATE formations SET titre_f='$titre_f', sous_titre_f='$sous_titre_f', dates_f='$dates_f', description_f='$description_f' WHERE id_formation='$id_formation' ");
          header('location: ../admin/formations.php'); //le header pour revenir à la liste des compétences de l'utilisateur
     exit();

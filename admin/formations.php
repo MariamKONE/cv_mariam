@@ -37,7 +37,7 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
             	$dates_f = addslashes($_POST['dates_f']);
             	$description_f = addslashes($_POST['description_f']);
 
-				$pdoCV->exec(" INSERT INTO formation VALUES (NULL, '$titre_f', '$sous_titre_f',  '$dates_f', '$description_f', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
+				$pdoCV->exec(" INSERT INTO formations VALUES (NULL, '$titre_f', '$sous_titre_f',  '$dates_f', '$description_f', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
 				header("location: ../admin/formations.php");
 				exit();
 			}//ferme le if
