@@ -19,6 +19,8 @@ require_once("inc/init.inc.php");
 
     <title>Developpeur web freelance paris</title>
 
+    <link rel="stylesheet" href="../css/style.css">
+
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -63,7 +65,7 @@ require_once("inc/init.inc.php");
                         $ligne_formation = $sql->fetch();
                     ?>
                     <li>
-                        <a class="page-scroll" href="#about"><?php echo $ligne_formation['titre_f']; ?></a>
+                        <a class="page-scroll" href="#formation"><?php echo $ligne_formation['titre_f']; ?></a>
                     </li>
 
                     <?php
@@ -71,7 +73,7 @@ require_once("inc/init.inc.php");
                         $ligne_experience = $sql->fetch();
                     ?>
                     <li>
-                        <a class="page-scroll" href="#services"><?php echo $ligne_experience['titre_e']; ?></a>
+                        <a class="page-scroll" href="#experience"><?php echo $ligne_experience['titre_e']; ?></a>
                     </li>
 
                     <?php
@@ -131,36 +133,35 @@ require_once("inc/init.inc.php");
                 <hr>
                 <p><?php echo $ligne_titre['accroche']; ?></p>
 
-                    <a href="img/CV_mariam_kone_Dev.pdf" href="#telecharger" class="btn btn-primary btn-xl page-scroll" download>Téléchargez mon Cv </a>
-
-
             </div>
         </div>
     </header>
 
-    <section class="bg-primary" id="about">
-        <div class="container">
+    <section class="bg-primary" id="formation">
+        <div id="img_formation" class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
+                    <h2 class="section-heading">Formation</h2>
                     <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                    <p id="test" class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+
                 </div>
-            </div>
+            </div
         </div>
     </section>
 
-    <section id="services">
+
+
+    <section id="experience">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                <div  class="col-lg-12 text-center">
+                    <h2 id="titre_ex" class="section-heading">Experience</h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
@@ -191,7 +192,7 @@ require_once("inc/init.inc.php");
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <section class="no-padding" id="portfolio">
@@ -291,11 +292,71 @@ require_once("inc/init.inc.php");
         </div>
     </section>
 
+    <h2 class="text-center">Langages de programmation</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-6 columns">
+							<div class="row graph">
+								<div class="small-6 columns">
+									<canvas width="180" height="180"></canvas>
+								</div>
+								<div class="small-6 columns">
+									<div class="row">
+										<dl>
+											<dt><i class="icon fontello-docs"></i>Analyse</dt>
+											<dd><i class="icon fontello-db-shape"><span>75%</span></i>UML</dd>
+											<dd><i class="icon fontello-db-shape"><span>15%</span></i>Merise</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="large-6 columns">
+							<div class="row graph">
+								<div class="small-6 columns">
+									<canvas width="180" height="180"></canvas>
+								</div>
+								<div class="small-6 columns">
+									<div class="row">
+										<dl>
+											<dt><i class="icon fontello-database"></i>Base de données</dt>
+											<dd><i class="icon fontello-db-shape"><span>75%</span></i>SQL</dd>
+											<dd><i class="icon fontello-db-shape"><span>35%</span></i>SQL Server <i data-tooltip class="icon fontello-info-circled has-tip tip-top" title="2008"></i></dd>
+											<dd><i class="icon fontello-db-shape"><span>25%</span></i>Oracle</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-6 columns">
+							<div class="row graph">
+								<div class="small-6 columns">
+									<canvas width="180" height="180"></canvas>
+								</div>
+								<div class="small-6 columns">
+									<div class="row">
+										<dl>
+											<dt><i class="icon fontello-window"></i>Logiciel</dt>
+											<dd><i class="icon fontello-db-shape"><span>95%</span></i>C, C++ <i data-tooltip class="icon fontello-info-circled has-tip tip-top" title="OpenGL, SDL, API Win32"></i></dd>
+											<dd><i class="icon fontello-db-shape"><span>85%</span></i>C# <i data-tooltip class="icon fontello-info-circled has-tip tip-top" title="C#.net"></i></dd>
+											<dd><i class="icon fontello-db-shape"><span>75%</span></i>Visual Basic <i data-tooltip class="icon fontello-info-circled has-tip tip-top" title="VB6, VB.net"></i></dd>
+											<dd><i class="icon fontello-db-shape"><span>50%</span></i>Java</dd>
+											<dd><i class="icon fontello-db-shape"><span>25%</span></i>DOS, Shell, Power Shell</dd>
+											<dd><i class="icon fontello-db-shape"><span>10%</span></i>Assembleur</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+						</div>
+
     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
-                <h2>Télécharger</h2>
-                <a href="img/CV_mariam_kone_Dev.pdf" href="#telecharger" class="btn btn-default btn-xl sr-button" download>Téléchargez mon Cv </a>
+
+                <a href="img/CV_mariam_kone_Dev.pdf" href="#telecharger" id="btn_cv" class="btn btn-default btn-xl sr-button" download>Téléchargez mon Cv </a>
 
             </div>
         </div>
@@ -324,16 +385,16 @@ require_once("inc/init.inc.php");
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-    <!-- Theme JavaScript -->
     <script src="js/creative.min.js"></script>
+    <script src="js/script.js">
+
+    </script>
 
 </body>
 

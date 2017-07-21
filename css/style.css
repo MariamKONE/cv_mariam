@@ -1,0 +1,52 @@
+#btn_cv{
+    transition: 1s;
+}
+#btn_cv:hover{
+    background-color: #425560;
+    font-size: 30px;
+    color: #fff;
+}
+
+#formation{
+    background-image:url(../front/img/portfolio/fullsize/chapeau.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 300px;
+    background-color: #fff;
+    transition: 1s;
+    color: #fff;
+}
+
+#formation:hover{
+    background-image:url(../front/img/portfolio/fullsize/chapeau.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 500px;
+    background-color: #6A8D9D;
+    font-size: 30px;
+    color: #fff;
+}
+
+#experience{
+    background-image:url(../front/img/portfolio/fullsize/experience.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 300px;
+    background-color: #fff;
+    transition: 1s;
+    color: #fff;
+}
+
+#experience:hover{
+    background-image:url(../front/img/portfolio/fullsize/experience.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 400px;
+    background-color: #6A8D9D;
+    font-size: 30px;
+    color: #fff;
+}
+
+#test{
+    color: #222222;
+}
