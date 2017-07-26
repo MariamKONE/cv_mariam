@@ -391,7 +391,7 @@ span{
                      ------------------*/
 
 .close-btn {
-   background: url(../images/icon/close.png);
+   background: url(../front/img/portfolio/icon/close_sm.png);
    z-index: 1000;
    cursor: pointer;
    width: 40px;
