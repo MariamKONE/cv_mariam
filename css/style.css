@@ -1017,6 +1017,7 @@ span{
 .contact-form {
     float: none;
     margin: 0 auto;
+    margin-top: 250px;
 }
 
 .contact-form input,
