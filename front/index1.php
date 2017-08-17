@@ -1,5 +1,20 @@
+<?php
+
+require '../connexion/connexion.php';
+
+$sql = $pdoCV->query(" SELECT * FROM titres_cv WHERE utilisateur_id ='1' ");
+$ligne_titre = $sql->fetch();
+
+$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='1' ");
+$ligne_utilisateur = $sql->fetch();
+
+$sql = $pdoCV->query(" SELECT * FROM profils WHERE utilisateur_id ='1' ");
+$ligne_profil = $sql->fetch();
+
+
+ ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -55,9 +70,11 @@
             </div>
             <div class="intro-content">
 
+
                 <h1 id="presentation">HELLO<br>
-                I'M <span>MARIAM</span> KONE</h1>
-                <h2 id="presentation">Développeur intégrateur web</h2>
+                I'M <span><?php echo $ligne_utilisateur['prenom'].' '.$ligne_utilisateur['nom']; ?></span></h1>
+                <h2 id="presentation"><?php echo $ligne_titre['titre_cv']; ?></h2>
+                <p><?php echo $ligne_profil['description_p']; ?></p>
                 <p class="social-media hidden-xs">
                     <a href="#" class="fa fa-facebook" data-toggle="tooltip" title="Facebook"></a>
                     <a href="#" class="fa fa-twitter" data-toggle="tooltip" title="Twitter"></a>
@@ -575,7 +592,7 @@
                         <button class="filter is-checked" data-filter="all"> all</button>
 
 
-                            
+
                         <button class="filter" data-filter="1">Graphic Design</button>
                         <button class="filter" data-filter="2">Web Designs</button>
                         <button class="filter" data-filter="3">App Development</button>

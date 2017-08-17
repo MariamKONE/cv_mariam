@@ -26,6 +26,7 @@
             <li><a href="atouts.php">Atouts</a> </li>
             <li><a href="interets.php">Centres d'Intérêts</a> </li>
             <li><a href="realisations.php">Réalisations</a> </li>
+            <li><a href="lettre_motivation.php">Réalisations</a> </li>
             <li role="separator" class="divider"> </li>
             <li><a href="index.php">Voir</a> </li>
           </ul>

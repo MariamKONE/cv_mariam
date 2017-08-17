@@ -94,7 +94,7 @@ $ligne_titre = $sql->fetch();
       <p>Il y a <?php echo $nbr_formations; ?> formation dans la table pour <?php echo $ligne_utilisateur['pseudo']; ?></p>
     </div>
   </div>
-  <div class="container">
+  <!-- <div class="container"> -->
     <div class="row text-center">
      <div class="col-xs-3 jumbotron">
           	<span class="glyphicon glyphicon-road"></span>
@@ -133,13 +133,13 @@ $ligne_titre = $sql->fetch();
             <form action="formations.php" method="post" class="text-center">
               <div class="form-group">
                 <label for="formation_f">Titre de la formation</label>
-                <input type="text" name="titre_f" class="form-control" id="titre_e" placeholder="insérez une formation">
+                <input type="text" name="titre_f" class="form-control" id="titre_f" placeholder="insérez une formation">
                 <label for="sous_titre_f">Sous-titre</label>
                 <input type="text" name="sous_titre_f" class="form-control" id="sous_titre_f" placeholder="le sous-titre est facultatif">
                 <label for="dates_f">Dates</label>
                 <input type="text" name="dates_f" class="form-control" id="dates_f" placeholder="dates de début et de fin">
                 <label for="description_e">Description</label>
-                <textarea name="description_e" cols="80" rows="4" class="form-control" id="description_e" placeholder="description de la formation"></textarea>
+                <textarea name="description_f" cols="80" rows="4" class="form-control" id="description_e" placeholder="description de la formation"></textarea>
                 <script>
             		CKEDITOR.replace( 'description_f' );
         		</script>
