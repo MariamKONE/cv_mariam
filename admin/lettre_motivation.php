@@ -38,7 +38,7 @@ if(isset($_POST['introduction_m'])){//si on récupère l'introduction_m
         $conclusion_m = addslashes($_POST['conclusion_m']);
 
         $pdoCV->exec(" INSERT INTO lettre_motivation VALUES (NULL, '$introduction_m', '$developpement_m',  '$conclusion_m', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
-        header("location: ../admin/formations.php");
+        header("location: ../admin/lettre_motivation.php");
         exit();
     }//ferme le if
 }//ferme le if isset
@@ -48,7 +48,7 @@ if(isset($_POST['introduction_m'])){//si on récupère l'introduction_m
         $efface = $_GET['id_motivation'];
         $sql = " DELETE FROM lettre_motivation WHERE id_motivation = '$efface' ";
         $pdoCV -> query($sql);// ou on peut avec exec
-        header("location: ../admin/formations.php");
+        header("location: ../admin/lettre_motivation.php");
     }
 
 ?>

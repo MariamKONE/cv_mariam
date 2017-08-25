@@ -28,19 +28,21 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 
 	?>
 	<?php
-	//gestion des contenus, mise à jour d'une compétence
-	if(isset($_POST['titre_c'])){// par le nom du premier input
-		$titre_c =  addslashes($_POST['titre_c']);
-		$description_c = addslashes($_POST['description_c']);
-		$id_competence = $_POST['id_competence'];
-		$pdoCV->exec(" UPDATE competences SET titre_c='$titre_c', description_c='$description_c',  WHERE id_competence='$id_competence' ");
-			 header('location: ../admin/competences.php'); //le header pour revenir à la liste des compétences de l'utilisateur
+	//gestion des contenus, mise à jour de la lettre de motivations
+	if(isset($_POST['introduction_m'])){// par le nom du premier input
+		$introduction =  addslashes($_POST['introduction_m']);
+		$developpement_m = addslashes($_POST['developpement_m']);
+		$conclusion_m = addslashes($_POST['conclusion_m']);
+		$id_motivation = $_POST['id_motivation'];
+
+		$pdoCV->exec(" UPDATE lettre_motivation SET introduction_m='$introduction_m', developpement_m='$developpement_m', conclusion_m='$conclusion_m',  WHERE id_motivation='$id_motivation' ");
+			 header('location: ../admin/lettre_motivation.php'); //le header pour revenir à la liste des compétences de l'utilisateur
         exit();
 	}
 	//je récupère la compétence
-	$id_competence = $_GET['id_competence']; // par l'id et $_GET
-	$sql = $pdoCV->query("SELECT * FROM competences WHERE id_competence = '$id_competence' ");// la requête égale à l'id
-	$ligne_competence = $sql->fetch();
+	$id_motivation = $_GET['id_motivation']; // par l'id et $_GET
+	$sql = $pdoCV->query("SELECT * FROM lettre_motivation WHERE id_motivation = '$id_motivation' ");// la requête égale à l'id
+	$ligne_motivation = $sql->fetch();
 
 ?>
 <!DOCTYPE html>
@@ -53,17 +55,11 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 		$sql = $pdoCV->query(" SELECT * FROM utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
 		$ligne_utilisateur = $sql->fetch();
 	?>
-<title>Modification d'une compétence : <?php echo $ligne_utilisateur['pseudo']; ?></title>
-
+<title>Modification de la lettre de motivation : <?php echo $ligne_utilisateur['pseudo']; ?></title>
+<!--CKEditor-->
+<script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
 <!-- Bootstrap -->
 <link rel="stylesheet" href="../css/bootstrap.css">
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <?php include("include_nav.php"); ?>
@@ -75,14 +71,14 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 $ligne_titre = $sql->fetch();
 	?>
 </header>
-<!-- / HEADER -->
+
 
 <!--  SECTION-1 -->
 <section>
   <div class="row">
 
     <div class="col-lg-12 page-header text-center">
-      <h2>Mise à jour d'une compétence</h2>
+      <h2>Mise à jour de la lettre de motivation</h2>
     </div>
   </div>
   <div class="container">
@@ -94,11 +90,12 @@ $ligne_titre = $sql->fetch();
           <div class="text-center col-xs-9">
            <div class="jumbotron">
             <!-- form modification d'une compétence -->
-            <form action="modif_competence.php" method="post" class="text-center">
+            <form action="modif_lettre_motivation.php" method="post" class="text-center">
               <div class="form-group">
-                <label for="competence">Formulaire de mise à jour de la compétence</label>
-                <input type="text" name="competence" class="form-control" value="<?php echo $ligne_competence['description_c']; ?>">
-                <input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">
+
+                <label for="lettre_motivation">Modification de la lettre de motivation</label>
+                <input type="text" name="lettre_motivation" class="form-control" value="<?php echo $ligne_motivation['introduction_m']; ?>">
+                <input hidden name="id_motivation" value="<?php echo $ligne_motivation['id_motivation']; ?>">
               </div>
               <input type="submit" value="Mettre à jour" class="btn btn-primary btn-lg" style="margin-top: 10px;">
             </form>

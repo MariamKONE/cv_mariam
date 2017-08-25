@@ -30,10 +30,11 @@ if(isset($_GET['quitter'])){// on récupère le terme quitter dans l'url
 	<?php
 	//gestion des contenus
 	//insertion d'une compétence
-		if(isset($_POST['competence'])){//si on récupère une nelle compétence
-			if($_POST['competence']!=''){// si compétence n'est pas vide
-				$competence = addslashes($_POST['competence']);
-				$pdoCV->exec(" INSERT INTO competences VALUES (NULL, '$competence', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
+		if(isset($_POST['titre_c'])){//si on récupère une nelle compétence
+			if($_POST['titre_c']!='' && $_POST['description_c']!=''){// si compétence n'est pas vide
+				$titre_c = addslashes($_POST['titre_c']);
+				$description_c = addslashes($_POST['description_c']);
+				$pdoCV->exec(" INSERT INTO competences VALUES (NULL, '$titre_c', '$description_c', '$id_utilisateur') ");//mettre $id_utilisateur quand on l'aura en variable de session
 				header("location: ../admin/competences.php");
 				exit();
 			}//ferme le if
@@ -103,16 +104,17 @@ $ligne_titre = $sql->fetch();
 	<table class="table table-striped">
 		<tbody>
 		<tr class="info">
+			<th scope="col">Titre</th>
 			<th scope="col">compétences</th>
 			<th scope="col">modifier</th>
 			<th scope="col">supprimer</th>
 		</tr>
 		<tr>
 			<?php while ($ligne_competence = $sql->fetch()) { ?>
+			<td><?php echo $ligne_competence['titre_c']; ?></td>
 			<td><?php echo $ligne_competence['description_c']; ?></td>
 			<td><a href="modif_competence.php?id_competence=<?php echo $ligne_competence['id_competence']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-			<td>
-<a class="supr" href="competences.php?id_competence=<?php echo $ligne_competence['id_competence']; ?>">
+			<td><a class="supprimer" href="competences.php?id_competence=<?php echo $ligne_competence['id_competence']; ?>">
 			<span class="glyphicon glyphicon-trash"></span></a></span></td>
 		</tr>
 			<?php } ?>
@@ -128,8 +130,12 @@ $ligne_titre = $sql->fetch();
             <!-- form insertion d'une compétence -->
             <form action="competences.php" method="post" class="text-center">
               <div class="form-group">
-                <label for="competence">Compétence</label>
-                <input type="text" name="competence" class="form-control" id="competence" placeholder="insérez une compétence" required>
+                <label for="titre_c">Titre de la compétence</label>
+                <input type="text" name="titre_c" class="form-control" id="titre_c" placeholder="insérez une compétence">
+				<textarea name="description_c" cols="80" rows="4" class="form-control" id="description_c" placeholder="description de la competence"></textarea>
+                <script>
+            		CKEDITOR.replace( 'description_c' );
+        		</script>
               </div>
               <input type="submit" value="Envoyez" class="btn btn-primary btn-lg" style="margin-top: 10px;">
             </form>
